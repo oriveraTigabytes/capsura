@@ -5,6 +5,6 @@ gcloud compute instances create my-app-instance \
     --machine-type=g1-small \
     --scopes userinfo-email,cloud-platform \
     --metadata app-location=$DEPLOY_LOCATION \
-    --metadata-from-file startup-script=gce/startup-script.sh \
+    --metadata-from-file startup-script=gce/startupscript.sh \
     --zone us-central1-f \
     --tags http-server
