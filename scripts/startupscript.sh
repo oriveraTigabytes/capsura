@@ -25,7 +25,7 @@ ln -s /opt/nodejs/bin/npm /usr/bin/npm
 export HOME=/root
 git config --global credential.helper gcloud.sh
 git clone ${REPOSITORY}
-cp  -R capsura/nodeCode/app/* /opt/app
+cp  -r capsura/nodeCode/app/ /opt/app
 
 # Install app dependencies
 cd /opt/app/gce
