@@ -1,5 +1,6 @@
 {
-  "name": "appengine-hello-world",
+  "name": "hello-world",
+  "version": "0.0.1",
   "engines": {
     "node": ">=8.0.0"
   },
