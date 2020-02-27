@@ -16,6 +16,7 @@ docker run -d -p 8080:8080 gcr.io/${PROJECT}/hello-node:v1
 
 gcloud auth configure-docker
 
+#push to container registry
 docker push gcr.io/${PROJECT}/hello-node:v1
 
 #docker documentation: https://docs.docker.com
