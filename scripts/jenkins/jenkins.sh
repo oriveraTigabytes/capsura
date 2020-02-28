@@ -26,7 +26,11 @@ kubectl create clusterrolebinding tiller-admin-binding --clusterrole=cluster-adm
 ./helm init --service-account=tiller
 ./helm update
 
+sleep 30s
+
 ./helm install -n cd stable/jenkins -f jenkins/values.yaml --version 1.2.2 --wait
+
+sleep 30s
 
 kubectl create clusterrolebinding jenkins-deploy --clusterrole=cluster-admin --serviceaccount=default:cd-jenkins
 
