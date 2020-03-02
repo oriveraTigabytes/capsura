@@ -56,7 +56,7 @@ pipeline {
       steps {
         container('gcloud') {
         echo "Starting master deploy ...."
-        sh ("gcloud app deploy --version='my-node-app' --no-promote app.yaml")
+        sh ("gcloud app deploy --version='my-node-app-jenkins' --no-promote app.yaml")
         }
       }
     }
