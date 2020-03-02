@@ -1,12 +1,12 @@
 # Capsura repo
 
-capsura es un set de script para el despliegue de aplicaciones en google cloud platform
+Capsura es un set de scripts para el despliegue de aplicaciones en google cloud platform. Todos lo que necesitas en correr los scrips en la ruta /scripts/ y luego ingresando a la carpeta correspondiente a google compute engine (gce), appengine, google kubernetes engine (gke) y jenkins.-
 
 # Como usar
 
-## GAE
+## Google Compute Engine (/scripts/gce/)
 
-Aplica para los scripts que se encuentra en la ruta /scripts/gce
+Estos scripts permiten crear una maquina en gce y correr una aplicación en nodejs.
 
 Orden de ejecución:
 
@@ -14,7 +14,7 @@ Orden de ejecución:
 sh createVM.sh
 ```
 
-Este script crea una maquina en gcp cargando en ella el startup script del archivo startupscript.sh
+Este script crea una máquina en gcp cargando en ella el startup script del archivo startupscript.sh
 
 Luego de la creación de la máquina proceder a ejecutar el script para la creación de la regla del firewall para permitir acceder a la aplicación mediante http
 
@@ -22,9 +22,9 @@ Luego de la creación de la máquina proceder a ejecutar el script para la creac
 sh firewallRules.sh
 ```
 
-## App Engine
+## App Engine (/scripts/appengine/)
 
-Estos scripts permiten subir una aplicación nodejs a app engine
+Estos scripts permiten subir una aplicación nodejs a app engine.
 
 Orden de ejecución para standard y flexible:
 
@@ -32,7 +32,7 @@ Orden de ejecución para standard y flexible:
 sh deploy.sh
 ```
 
-## GKE
+## GKE (/scripts/gke/)
 
 Orden de ejecución:
 
@@ -78,7 +78,7 @@ Despues de modificar la imagen editamos el deployment. Agregamos la imagen versi
 sh editDeployment.sh
 ```
 
-## Jenkins
+## Jenkins (/scripts/jenkins/)
 
 Instalamos Jenkins en Kubernetes:
 
