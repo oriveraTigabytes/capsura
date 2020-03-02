@@ -1,0 +1,21 @@
+def project = 'MY-PROJECT'
+def  appName = "my-node-app"
+
+pipeline {
+  agent none
+  stages {
+    stage('INIT') {
+      steps {
+
+      }
+    }
+    stage('Master') {
+      agent any
+      when { branch 'master' }
+      steps {
+        echo "Starting master deploy ...."
+        sh ("gcloud app deploy --version='my-node-app' --no-promote app.yaml")
+      }
+    }
+  }
+}
