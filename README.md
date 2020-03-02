@@ -96,3 +96,13 @@ sh repo.sh
 La aplicación ya tiene un archivo Jenkinsfile para que pueda ser usado en jenkins. Faltaría agregarlo como tarea y crear una clave para que jenkins pueda acceder al repositorio y a app engine.
 
 nota: no olvidar habilitar la appengine admin api en el proyecto.
+
+
+## Cloud Function (/scripts/gcf/)
+
+Crea una función en gcp en nodejs10
+
+```bash
+sh createFunction.sh
+```
+
