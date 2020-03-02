@@ -1,84 +1,21 @@
-def project = 'bci-correos-delicados'
-def serviceAccount = 'jenkins@jenkins-server-265012.iam.gserviceaccount.com'
-def keyFile = '/opt/jenkins-server-265012-198aa52ce109.json'
+def project = 'MY-PROJECT'
+def  appName = "my-node-app"
 
 pipeline {
-  agent any
-  environment {
-        GOOGLE_PROJECT_ID = 'bci-correos-delicados';
-        GOOGLE_SERVICE_ACCOUNT_KEY = '/opt/jenkins-server-265012-198aa52ce109.json';
-        GOOGLE_SERVICE_ACCOUNT_USER = 'jenkins@jenkins-server-265012.iam.gserviceaccount.com';
-  }
+  agent none
   stages {
-
-    stage('Init'){
-       steps{
-             sh ("gcloud auth activate-service-account ${serviceAccount} --key-file=${keyFile} --project=${project}")
-             sh ("gcloud config set project ${project}")
-             println "Init success..";
-        }
-    }
-    //version de desarrollo si la rama es desarrollo
-    stage('Desarrollo') {
-      when { branch 'desarrollo' }
+    stage('INIT') {
       steps {
-        echo "Starting dev deploy ...."
-        //sh ("pip install -r requirements.txt")
-        sh ("gcloud app deploy --version='bci-correos-dev' --no-promote app-dev.yaml")
+
       }
     }
-    stage('Staging') {
-      when { branch 'staging' }
-      steps {
-        echo "Starting staging deploy ...."
-        sh ("gcloud app deploy --version='bci-correos-pre' --no-promote app-pre.yaml")
-      }
-    }
-
-    stage('Produccion') {
+    stage('Master') {
+      agent any
       when { branch 'master' }
       steps {
-        echo "Starting production deploy ...."
-        sh ("gcloud app deploy --version='bci-correos-prod' --no-promote app-prod.yaml")
+        echo "Starting master deploy ...."
+        sh ("gcloud app deploy --version='my-node-app' --no-promote app.yaml")
       }
     }
-   
   }
-    post {
-        always {
-            echo 'Siempre me voy a ejecutar :D'
-        }
-
-        success {
-            echo 'Exito...enviando email'
-            notifyThroughEmail('success');
-        }
-        failure {
-            echo 'Fallo...enviando email'
-            notifyThroughEmail('failure');
-        }
-        unstable {
-            echo 'Solo me ejecutaré si me marco como inestable'
-        }
-        changed {
-            echo 'El pipeline estaba fallando pero ahora está correcto o visceversa'
-        }
-    }
-}
-def notifyThroughEmail(String status){
-    
-                    emailext  (
-                    body:"""
-                      Developer Team - Build # $BUILD_NUMBER - $currentBuild.currentResult:
-                
-                      Check console output at $BUILD_URL to view the results.
-                    """,
-                    //compressLog: true,
-                    attachLog: true,
-                    //replyTo: 'oscar@tigabytes.com',
-                    recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                    subject: "Build Notification Jenkins - Project : Project-service - Job: $JOB_NAME Build # $BUILD_NUMBER ${currentBuild.currentResult}",
-                    to: '$BUILD_USER_EMAIL',
-                    from: 'jenkins@jenkins.com');
-
 }
