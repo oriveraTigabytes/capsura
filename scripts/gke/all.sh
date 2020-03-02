@@ -1,6 +1,8 @@
 #! /bin/bash
 PROJECT=$(gcloud info --format='value(config.project)')
 
+cd ../../nodeCode/app/gke/
+
 docker build -t gcr.io/${PROJECT}/hello-node:v1 .
 
 gcloud auth configure-docker

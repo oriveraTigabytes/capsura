@@ -13,6 +13,7 @@ Orden de ejecución:
 ```bash
 sh createVM.sh
 ```
+Si es la primera vez que vas a crear una VM pedirá que actives la api de compute. Ingres [y] y continuar.
 
 Este script crea una máquina en gcp cargando en ella el startup script del archivo startupscript.sh
 
@@ -22,7 +23,7 @@ Luego de la creación de la máquina proceder a ejecutar el script para la creac
 sh firewallRules.sh
 ```
 
-## App Engine (/scripts/appengine/)
+## App Engine (/scripts/appengine/standard | /scripts/appengine/flexible)
 
 Estos scripts permiten subir una aplicación nodejs a app engine.
 
