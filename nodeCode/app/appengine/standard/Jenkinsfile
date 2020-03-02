@@ -1,12 +1,24 @@
-def project = 'MY-PROJECT'
 def  appName = "my-node-app"
 
 pipeline {
   agent none
   stages {
-    stage('INIT') {
+    stage('Develpment') {
+      when { branch 'development' }
       steps {
+        echo "Starting development deploy ...."
+      }
+    }
+    stage('Test') {
+      steps {
+        echo "Starting development deploy ...."
 
+      }
+    }
+    stage('staging') {
+      when { branch 'staging' }
+      steps {
+        echo "Starting development deploy ...."
       }
     }
     stage('Master') {
