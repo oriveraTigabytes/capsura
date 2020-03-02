@@ -1,7 +1,37 @@
 def  appName = "my-node-app"
-
 pipeline {
-  agent none
+    agent {
+    kubernetes {
+      label 'sample-app'
+      defaultContainer 'jnlp'
+      yaml """
+        apiVersion: v1
+        kind: Pod
+        metadata:
+        labels:
+          component: ci
+        spec:
+          # Use service account that can deploy to all namespaces
+          serviceAccountName: cd-jenkins
+          containers:
+          - name: golang
+            image: golang:1.10
+            command:
+            - cat
+            tty: true
+          - name: gcloud
+            image: gcr.io/cloud-builders/gcloud
+            command:
+            - cat
+            tty: true
+          - name: kubectl
+            image: gcr.io/cloud-builders/kubectl
+            command:
+            - cat
+            tty: true
+        """
+        }
+  }
   stages {
     stage('Develpment') {
       when { branch 'development' }
@@ -22,11 +52,12 @@ pipeline {
       }
     }
     stage('Master') {
-      agent any
       when { branch 'master' }
       steps {
+        container('gcloud') {
         echo "Starting master deploy ...."
         sh ("gcloud app deploy --version='my-node-app' --no-promote app.yaml")
+        }
       }
     }
   }
