@@ -37,7 +37,11 @@ sh deploy.sh
 
 Orden de ejecución:
 
-Primero procederemos a subir una imagen de la aplicación en nodejs a Container Registry
+Primero procederemos a subir una imagen de la aplicación en nodejs a Container Registry.
+
+nota: Puede que al momento de intentar subir la imagen a container registry de error debido a que no esta habilitada la la api. Puedes esperar a que aparezca el mensaje y luego copiar el link que ahí te indica o hacerlo con el siguiente link cambiando el proyecto:
+
+https://console.cloud.google.com/apis/api/containerregistry.googleapis.com/overview?project=[PROJECT]
 
 ```bash
 sh docker.sh
@@ -46,7 +50,7 @@ sh docker.sh
 Creamos el cluster:
 
 ```bash
-sh docker.sh
+sh createCluster.sh
 ```
 
 Creamos el deployment con un pod:
