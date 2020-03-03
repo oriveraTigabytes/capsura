@@ -1,4 +1,9 @@
 #! /bin/bash
-kubectl edit deployment hello-node
 
-#kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1 --record
+PROJECT=$(gcloud info --format='value(config.project)')
+
+kubectl set image deployment/hello-node hello-node=gcr.io/${PROJECT}/hello-node:v1 --record
+
+#kubectl edit deployment hello-node
+
+

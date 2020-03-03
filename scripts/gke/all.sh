@@ -24,4 +24,4 @@ kubectl expose deployment hello-node --type="LoadBalancer"
 
 
 #! /bin/bash
-kubectl scale deployment hello-node --replicas=4
+kubectl scale deployment hello-node --replicas=5

@@ -1,2 +1,2 @@
 #! /bin/bash
-kubectl scale deployment hello-node --replicas=4
+kubectl scale deployment hello-node --replicas=5

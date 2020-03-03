@@ -41,13 +41,17 @@ Primero procederemos a subir una imagen de la aplicación en nodejs a Container 
 
 nota: Puede que al momento de intentar subir la imagen a container registry de error debido a que no esta habilitada la la api. Puedes esperar a que aparezca el mensaje y luego copiar el link que ahí te indica o hacerlo con el siguiente link cambiando el proyecto:
 
-https://console.cloud.google.com/apis/api/containerregistry.googleapis.com/overview?project=[PROJECT]
+https://console.cloud.google.com/apis/api/containerregistry.googleapis.com/overview?project=[YOUR-PROJECT]
 
 ```bash
 sh docker.sh
 ```
 
 Creamos el cluster:
+
+nota: al igual que el paso anterior si la api no está habilitada dará error por lo que la habilitamos con el siguiente link:
+
+https://console.cloud.google.com/apis/api/container.googleapis.com/overview?project=[YOUR-PROJECT]
 
 ```bash
 sh createCluster.sh
